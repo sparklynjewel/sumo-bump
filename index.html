@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sumo Bump</title>
+  <meta name="description" content="Bump the other fighters off the island. A start.ng game where your fighter wears your start.ng character.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <!-- Who is playing (start.ng profile card) -->
+  <div class="card" id="profile" hidden>
+    <img id="profile-face" alt="">
+    <div>
+      <b id="profile-name">Guest</b>
+      <span id="profile-account">Not signed in</span>
+    </div>
+    <button type="button" id="profile-sign-in" hidden>Sign in</button>
+  </div>
+
+  <div class="hud" id="hud" hidden>
+    <div id="hud-round">Round 1</div>
+    <div id="hud-left">Left: 4</div>
+    <div id="hud-ko">KOs: 0</div>
+  </div>
+
+  <div class="corner">
+    <button type="button" id="mute" title="Sound on/off">🔊</button>
+    <button type="button" id="style-test" hidden title="Try a random start.ng look (local testing only)">🎲 Try a look</button>
+  </div>
+
+  <!-- Start menu -->
+  <section class="overlay" id="menu">
+    <h1>🤼 Sumo Bump</h1>
+    <p id="menu-greeting">Bump everyone off the island. Last one standing wins the round.</p>
+    <div class="buttons" id="menu-signed-out" hidden>
+      <button type="button" class="primary" id="menu-sign-in">Sign in with start.ng</button>
+      <button type="button" id="menu-guest">Play as guest</button>
+    </div>
+    <div class="buttons" id="menu-play-row" hidden>
+      <button type="button" class="primary" id="menu-play">Play</button>
+    </div>
+    <p class="note" id="menu-note" hidden></p>
+    <button type="button" class="link" id="menu-board">🏆 Leaderboard</button>
+    <div class="how">
+      <b>How to play</b>
+      <span><kbd>W A S D</kbd> or arrow keys to move · tap <kbd>Space</kbd> for a short push · hold it for a big push</span>
+      <span>On a phone: drag the left stick · tap or hold DASH</span>
+      <span>5 rounds, each on a smaller island with fewer but tougher fighters. Beat the boss in round 5 to become Grand Champion!</span>
+    </div>
+  </section>
+
+  <!-- Between rounds and end of run -->
+  <section class="overlay" id="result" hidden>
+    <h1 id="result-title"></h1>
+    <p id="result-text"></p>
+    <p class="note" id="result-save"></p>
+    <ol class="board" id="result-board"></ol>
+    <div class="buttons">
+      <button type="button" class="primary" id="result-next"></button>
+      <button type="button" id="result-menu">Menu</button>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section class="overlay" id="board" hidden>
+    <h1>🏆 Leaderboard</h1>
+    <p class="note" id="board-note"></p>
+    <ol class="board" id="board-list"></ol>
+    <button type="button" class="primary" id="board-close">Back</button>
+  </section>
+
+  <!-- Touch controls -->
+  <div class="touch" id="touch" hidden>
+    <div class="stick" id="stick"><div class="knob" id="knob"></div></div>
+    <button type="button" class="dash-btn" id="dash-btn">DASH</button>
+  </div>
+
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>

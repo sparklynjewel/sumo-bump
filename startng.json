@@ -1,0 +1,8 @@
+{
+  "leaderboard": {
+    "stats": [
+      { "key": "rounds", "label": "Rounds won", "order": "highest" },
+      { "key": "knockouts", "label": "Knockouts", "order": "highest" }
+    ]
+  }
+}

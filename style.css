@@ -1,0 +1,56 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #ffb36b; color: #fffefa;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-user-select: none; user-select: none; touch-action: none; }
+canvas { display: block; }
+[hidden] { display: none !important; }
+button { font: inherit; cursor: pointer; }
+
+/* start.ng profile card */
+.card { position: fixed; top: 14px; left: 14px; z-index: 5; display: flex; align-items: center; gap: 10px;
+  padding: 6px 14px 6px 6px; border-radius: 999px; background: #292a23; }
+.card img { width: 40px; height: 40px; border-radius: 50%; background: #d8fd71; object-fit: cover; }
+.card img[src=""] { visibility: hidden; }
+.card b { display: block; font-size: 15px; }
+.card span { font-size: 12px; opacity: 0.7; }
+.card button { margin-left: 6px; border: 0; border-radius: 999px; padding: 6px 12px; background: #d8fd71; color: #292a23; font-weight: 700; }
+
+.hud { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 4; display: flex; gap: 8px; pointer-events: none; }
+.hud div { background: rgba(41, 42, 35, 0.8); padding: 8px 14px; border-radius: 999px; font-weight: 700; white-space: nowrap; }
+.corner { position: fixed; top: 14px; right: 14px; z-index: 5; display: flex; gap: 8px; }
+.corner button { border: 0; border-radius: 999px; padding: 8px 12px; background: rgba(41, 42, 35, 0.85); color: #fffefa; font-weight: 700; }
+
+/* Menus */
+.overlay { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 24px; text-align: center; background: rgba(41, 42, 35, 0.72); overflow-y: auto; }
+.overlay h1 { margin: 0; font-size: clamp(34px, 7vw, 56px); }
+.overlay p { margin: 0; max-width: 480px; line-height: 1.5; }
+.buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.overlay button { border: 0; border-radius: 999px; padding: 12px 24px; font-size: 17px; font-weight: 800; background: #fffefa; color: #292a23; }
+.overlay button.primary { background: #d8fd71; }
+.overlay button.link { background: none; color: #d8fd71; padding: 4px; text-decoration: underline; }
+.note { font-size: 14px; opacity: 0.85; }
+.how { display: flex; flex-direction: column; gap: 4px; font-size: 14px; opacity: 0.9; margin-top: 6px; }
+kbd { background: #fffefa; color: #292a23; border-radius: 4px; padding: 1px 5px; font-size: 12px; font-weight: 700; }
+
+.board { list-style: none; margin: 0; padding: 0; width: min(420px, 100%); display: flex; flex-direction: column; gap: 4px; }
+.board li { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px; background: rgba(255, 254, 250, 0.1); text-align: left; }
+.board li.me { background: #d8fd71; color: #292a23; font-weight: 700; }
+.board .rank { width: 28px; font-weight: 800; }
+.board .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.board .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .stat { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.board:empty::before { content: "No scores yet. Be the first!"; opacity: 0.7; }
+
+/* Touch controls */
+.touch { position: fixed; inset: auto 0 0 0; z-index: 6; height: 0; }
+.stick { position: fixed; left: 28px; bottom: 28px; width: 130px; height: 130px; border-radius: 50%; background: rgba(41, 42, 35, 0.35);
+  border: 2px solid rgba(255, 254, 250, 0.4); touch-action: none; }
+.knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255, 254, 250, 0.85); }
+.dash-btn { position: fixed; right: 28px; bottom: 44px; width: 96px; height: 96px; border-radius: 50%; border: 0; background: #d8fd71; color: #292a23;
+  font-weight: 900; font-size: 18px; touch-action: none; }
+.dash-btn.cooling { opacity: 0.45; }
+
+@media (max-width: 560px) {
+  .hud { top: 64px; }
+  .hud div { padding: 6px 10px; font-size: 13px; }
+}
